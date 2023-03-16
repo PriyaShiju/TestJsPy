@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script type="text/javascript">
+   
+
+function calculateFinalPrice(basePrice, variationPassengerType, variationFlightType) 
+    {
+        let finalPrice=0;
+
+        /*if ((variationPassengerType >0) && (variationFlightType>0))
+            finalPrice = basePrice + ((variationPassengerType/100) * basePrice) + (variationFlightType/100) * (basePrice + ((variationPassengerType/100) * basePrice)) ;
+
+        if (variationPassengerType >0 && variationFlightType<0)
+            finalPrice = basePrice + ((variationPassengerType/100) * basePrice) + (variationFlightType/100) * (basePrice + ((variationPassengerType/100) * basePrice)) ;
+
+        if (variationPassengerType <0 && variationFlightType>0)
+            finalPrice = basePrice + ((variationPassengerType/100) * basePrice) + (variationFlightType/100) * (basePrice + ((variationPassengerType/100) * basePrice)) ;
+            */
+        if ((variationPassengerType <0) && (variationFlightType<0))
+            finalPrice = (basePrice + (variationPassengerType * basePrice / 100)) + ((variationFlightType / 100) * (basePrice + (variationPassengerType * basePrice / 100))) ;
+        
+            alert(finalPrice);
+            
+        return finalPrice.toFixed(2);
+
+
+    }
+    //calculateFinalPrice(100,-5,-3);
+
+    function calculateDefaultFinalPrice(basePrice, variationPassengerType, variationFlightType) {
+        let finalPrice = 0;
+        let PassengerType = 0;
+        let FlightType = 0;
+
+        if (variationPassengerType == "regular")
+            PassengerType = -5;
+        else if (variationPassengerType == "vip")
+            PassengerType = 5;
+
+        if (variationFlightType == "economy")
+            FlightType = -3;
+        else if (variationFlightType == "business")
+            FlightType = 10;
+
+        finalPrice = (basePrice + (PassengerType * basePrice / 100)) + (FlightType / 100) * (basePrice + (PassengerType * basePrice / 100));
+        alert(finalPrice);
+        return finalPrice.toFixed(2);
+        
+    }
+
+    function calculateTotalFinalPrice(nrSeats, variationPassengerType, variationFlightType, basePrice) {
+        let finalPrice = 0;
+
+        finalPrice = nrSeats * calculateDefaultFinalPrice(basePrice, variationPassengerType, variationFlightType);
+       
+        return finalPrice;
+    }
+    /*
+    calculateTotalFinalPrice(5, 'regular', 'economy', 100);
+    calculateTotalFinalPrice(4, 'vip', 'economy', 100);
+    calculateTotalFinalPrice(2, 'regular', 'business', 100);
+    calculateTotalFinalPrice(3, 'vip', 'business', 100);
+    */
+    function calculateTotalDistance(arrDist) {
+        let totDistance = 0;
+        for (i = 0; i < arrDist.length; i++) {
+            //alert(arrDist[i]);
+            if (arrDist[i] > 0)
+                totDistance = totDistance  + arrDist[i];
+        }
+       // alert(totDistance);
+        return totDistance.toFixed(2);
+    }
+
+    function calculateBonusPoints(arrDistBusinessSeats, arrDistEconomySeats, businessBonusPercent, economyBonusPercent) {
+        let TotBonusPoint = 0;
+        TotBonusPoint = (calculateTotalDistance(arrDistBusinessSeats) * businessBonusPercent/100) + (calculateTotalDistance(arrDistEconomySeats) * economyBonusPercent/100);
+        alert(TotBonusPoint);
+        return (TotBonusPoint.toFixed(2));
+    }
+
+    //calculateBonusPoints([1320, 574, -470, 633, 910, -780], [1200, -70, 890, -1000, 720, 890], 10, 5);
+
+
+
+</script>
+</body>
+</html>
