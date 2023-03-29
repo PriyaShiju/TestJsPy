@@ -21,8 +21,9 @@ answer = 4>10
 print(answer)
 """"""
 
-rain_speed = 4 
-if rain_speed<5:
+rain = 4
+speed=3 
+if  (rain!=speed and speed<5):
     print("Just a Scotch mist")
 else:
     print("It's a real Cow-quaker out there")
